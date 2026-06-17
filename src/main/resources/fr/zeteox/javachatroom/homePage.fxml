@@ -1,18 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="fr.zeteox.javachatroom.ui.ChatController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="fr.zeteox.javachatroom.ui.ChatController"
+            prefWidth="800" prefHeight="550">
 
-    <Label fx:id="connectText"/>
-    <Button text="Connect" onAction="#onConnectButtonClick"/>
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-width: 0 0 1 0;">
+            <padding><Insets top="10" right="15" bottom="10" left="15"/></padding>
 
-    <Button text="Send" onAction="#onSendButtonClick"/>
-</VBox>
+            <Label text="Pseudo :"/>
+            <TextField fx:id="pseudoField" promptText="Entrez votre pseudo" prefWidth="160"/>
+            <Button fx:id="connectButton" text="Connexion" onAction="#onConnectButtonClick"/>
+            <Label fx:id="statusLabel" text="Non connecté" style="-fx-text-fill: #888888;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TextArea fx:id="messagesArea"
+                  editable="false"
+                  wrapText="true"
+                  style="-fx-font-family: monospace; -fx-font-size: 13;">
+            <BorderPane.margin><Insets top="8" right="8" bottom="8" left="8"/></BorderPane.margin>
+        </TextArea>
+    </center>
+
+    <right>
+        <VBox prefWidth="160" style="-fx-background-color: #fafafa; -fx-border-color: #cccccc; -fx-border-width: 0 0 0 1;">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+            <Label text="Connectés" style="-fx-font-weight: bold; -fx-padding: 0 0 6 0;"/>
+            <ListView fx:id="usersListView" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </right>
+
+    <bottom>
+        <HBox spacing="8" alignment="CENTER"
+              style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-width: 1 0 0 0;">
+            <padding><Insets top="10" right="15" bottom="10" left="15"/></padding>
+
+            <TextField fx:id="inputField"
+                       promptText="Votre message..."
+                       HBox.hgrow="ALWAYS"/>
+            <Button fx:id="sendButton" text="Envoyer" onAction="#onSendButtonClick"
+                    defaultButton="true"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

@@ -1,5 +1,7 @@
 package fr.zeteox.javachatroom.server;
 
+import fr.zeteox.javachatroom.protocol.Message;
+
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -8,9 +10,9 @@ public class ClientRegistry {
     private static ClientRegistry clientRegistry;
 
     public static ClientRegistry getInstance() {
-        if (clientRegistry == null) {                    // first check (no lock)
+        if (clientRegistry == null) {
             synchronized (ClientRegistry.class) {
-                if (clientRegistry == null) {            // second check (with lock)
+                if (clientRegistry == null) {
                     clientRegistry = new ClientRegistry();
                 }
             }
@@ -30,7 +32,7 @@ public class ClientRegistry {
         return List.copyOf(clients);
     }
 
-    public void broadcastMessage(String message) {
+    public void broadcastMessage(Message message) {
         for (ClientHandler client : clients) {
             try {
                 client.sendMessage(message);

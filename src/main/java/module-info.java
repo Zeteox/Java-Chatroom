@@ -9,4 +9,6 @@ module fr.zeteox.javachatroom {
     opens fr.zeteox.javachatroom.ui to javafx.fxml;
     exports fr.zeteox.javachatroom.client;
     opens fr.zeteox.javachatroom.client to javafx.fxml;
+    exports fr.zeteox.javachatroom.protocol;
+    opens fr.zeteox.javachatroom.protocol to javafx.fxml;
 }

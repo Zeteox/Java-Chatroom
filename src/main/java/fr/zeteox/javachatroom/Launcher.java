@@ -1,6 +1,7 @@
 package fr.zeteox.javachatroom;
 
 import fr.zeteox.javachatroom.server.ChatServer;
+import fr.zeteox.javachatroom.ui.ChatApplication;
 import javafx.application.Application;
 
 public class Launcher {
